@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.enums import Choices
 
 # Create your models here.
 
@@ -7,6 +8,7 @@ class concertModel(models.Model):
   SingerName=models.CharField(max_length=100)
   length=models.IntegerField()
   test = models.CharField(max_length=10,null=True)
+  Poster=models.ImageField(upload_to="concertImages/")
 
   def __str__(self):
     return self.SingerName
@@ -37,3 +39,28 @@ class timeModel(models.Model):
 
   def __str__(self):
     return "Time: {} ConcertName: {} Location: {}".format(StartDateTime,concertModel.Name,locationModel.Name)
+
+class ProfileModel(models.Model):
+  Name= models.CharField(max_length=100)
+  Family= models.CharField(max_length=100)
+  Profile=models.ImageField(upload_to="ProfileImages/")
+
+  Man = 1
+  Woman = 2
+  status_choices = (("Man","مرد"),("Woman","زن"))
+
+  Gender= models.IntegerField(choices= status_choices)
+
+  def __str__(self):
+    return "FullName: {} {}".format(Name,Family)
+
+
+class ticketModel(models.Model):
+  ProfileModel= models.ForeignKey("ProfileModel",on_delete=models.PROTECT)
+  timeModel= models.ForeignKey("timeModel",on_delete=models.PROTECT)
+  ticketImage= models.ImageField(upload_to="TicketImages/")
+  Name = models.CharField(max_length=100)
+  Price= models.IntegerField()
+
+  def __str__(self):
+    return "TicketInfo: Profile: {}".format(timeModel.__str__())
