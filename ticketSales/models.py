@@ -8,7 +8,7 @@ class concertModel(models.Model):
   SingerName=models.CharField(max_length=100)
   length=models.IntegerField()
   test = models.CharField(max_length=10,null=True)
-  Poster=models.ImageField(upload_to="concertImages/")
+  Poster=models.ImageField(upload_to="concertImages/",null=True)
 
   def __str__(self):
     return self.SingerName
