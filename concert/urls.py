@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from concert import settings
 from django.conf.urls.static import static
+from ticketSales.views import concertListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ticketSales/concert/list',concertListView)
 ]
 
 if settings.DEBUG:
