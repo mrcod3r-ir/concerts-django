@@ -11,7 +11,6 @@ class concertModel(models.Model):
   Name=models.CharField(max_length=100,verbose_name='نام کنسرت')
   SingerName=models.CharField(max_length=100,verbose_name='خواننده')
   length=models.IntegerField(verbose_name='طول')
-  test = models.CharField(max_length=10,null=True)
   Poster=models.ImageField(upload_to="concertImages/",null=True,verbose_name='پوستر')
 
   def __str__(self):
