@@ -21,3 +21,4 @@ def concertListView(request):
 
   """.format('\n'.join('<li>{}</li>'.format(concert) for concert in concerts))
   return HttpResponse(text)
+
