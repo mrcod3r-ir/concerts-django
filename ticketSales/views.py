@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from ticketSales.models import concertModel
+from ticketSales.models import locationModel
 
 # Create your views here.
 def concertListView(request):
@@ -10,3 +11,12 @@ def concertListView(request):
   }
 
   return render(request,"ticketSales/concertList.html",context)
+
+def locationListView(request):
+  locations = locationModel.objects.all()
+  context = {
+    "locationlist":locations,
+  }
+
+  return render(request,"ticketSales/locationList.html",context)
+

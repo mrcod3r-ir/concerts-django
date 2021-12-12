@@ -1,47 +1,16 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>سامانه فروش بلیط کنسرت</title>
-		<link
-			rel="stylesheet"
-			href="{% static 'ticketSales/css/bootstrap.rtl.css' %}"
-		/>
-		<link
-			rel="stylesheet"
-			href="{% static 'ticketSales/css/fontawesome.css' %}"
-		/>
-		<link rel="stylesheet" href="{% static 'ticketSales/css/style.css' %}" />
-	</head>
-	<body>
-		<div class="container">
-			<box>
-				<h1>لیست کنسرت ها</h1>
-				<ul class="btnul">
-					<li><a class="btn btn-success">پروفایل</a></li>
-					<li><a class="btn btn-success">صفحه اصلی</a></li>
-				</ul>
-			</box>
-
-			<div class="row">
-				{% if concertlist %} {% for concert in concertlist %}
-				<div class="col-md-2">
-					<a>
-						<div class="imageBox">
-							<img src="{{ concert.Poster.url }}" />
-							{{concert}}
-						</div>
-					</a>
-				</div>
-				{% endfor %} {% endif %}
+{% extends "ticketSales/layout.html" %}
+{% block titlepage %} لیست کنسرت ها {% endblock %} 
+{% block mainContent %} 
+	{% if concertlist %} 
+		{% for concert in concertlist %}
+			<div class="col-md-2">
+				<a>
+					<div class="imageBox">
+						<img src="{{ concert.Poster.url }}" />
+						{{ concert }}
+					</div>
+				</a>
 			</div>
-		</div>
-		<script src="{% static 'ticketSales/js/jquery-3.6.0.js' %}"></script>
-		<script src="{% static 'ticketSales/js/bootstrap.bundle.js' %}"></script>
-		<script src="{% static 'ticketSales/js/fontawesome.js' %}"></script>
-		<script src="{% static 'ticketSales/js/main.js' %}"></script>
-	</body>
-</html>
+		{% endfor %} 
+	{% endif %} 
+{% endblock %}
