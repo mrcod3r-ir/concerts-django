@@ -19,11 +19,13 @@ from concert import settings
 from django.conf.urls.static import static
 from ticketSales.views import concertListView
 from ticketSales.views import locationListView
+from ticketSales.views import concertDetailsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ticketSales/concert/list',concertListView),
     path('ticketSales/location/list',locationListView),
+    path('ticketSales/concert/<int:concert_id>',concertDetailsView)
 ]
 
 if settings.DEBUG:
