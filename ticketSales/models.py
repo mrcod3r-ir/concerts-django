@@ -43,12 +43,12 @@ class timeModel(models.Model):
   End = 2
   Cancel = 3
   Sales = 4
-  status_choices = (("Start","فروش بلیط شروع شده است"),("End","فروش بلیط تمام شده است"),("Cancel","این سانس کنسل شده است"),("Sales","در حال فروش  بلیط"),)
+  status_choices = ((Start,"فروش بلیط شروع شده است"),(End,"فروش بلیط تمام شده است"),(Cancel,"این سانس کنسل شده است"),(Sales,"در حال فروش  بلیط"),)
 
   Status = models.IntegerField(choices=status_choices,verbose_name='وضعیت')
 
   def __str__(self):
-    return "Time: {} ConcertName: {} Location: {}".format(StartDateTime,concertModel.Name,locationModel.Name)
+    return "Time: {} ConcertName: {} Location: {}".format(self.StartDateTime,self.concertModel.Name,self.locationModel.Name)
 
 class ProfileModel(models.Model):
   class Meta:
