@@ -1,5 +1,6 @@
+@import url("https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css");
 body {
-	font-family: "IranSanse" !important;
+	font-family: Vazir;
 }
 
 .box {
@@ -9,7 +10,8 @@ body {
 	text-align: center;
 }
 
-.imageBox {
+.imageBox,
+.timeBox {
 	margin: 5px;
 	background-color: whitesmoke;
 	text-align: center;

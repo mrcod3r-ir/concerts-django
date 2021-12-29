@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from ticketSales.models import concertModel
-from ticketSales.models import locationModel
+from ticketSales.models import concertModel,locationModel,timeModel
 
 # Create your views here.
 def concertListView(request):
@@ -29,3 +28,11 @@ def concertDetailsView(request,concert_id):
   }
 
   return render(request,"ticketSales/concertDetails.html",context)
+
+def timeView(request):
+  times = timeModel.objects.all()
+  context = {
+    "timeList":times,
+  }
+
+  return render(request,"ticketSales/timeList.html",context)
