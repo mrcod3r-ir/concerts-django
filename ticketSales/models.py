@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.enums import Choices
+from jalali_date import datetime2jalali,date2jalali
 
 # Create your models here.
 
@@ -49,7 +50,8 @@ class timeModel(models.Model):
 
   def __str__(self):
     return "Time: {} ConcertName: {} Location: {}".format(self.StartDateTime,self.concertModel.Name,self.locationModel.Name)
-
+  def get_jalali_date(self):
+    return datetime2jalali(self.StartDateTime)
 class ProfileModel(models.Model):
   class Meta:
     verbose_name='کاربر'
