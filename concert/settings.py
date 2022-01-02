@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ticketSales.apps.TicketsalesConfig'
+    'ticketSales.apps.TicketsalesConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 # default settings
