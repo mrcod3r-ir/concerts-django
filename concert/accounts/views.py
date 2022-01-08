@@ -1,6 +1,26 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
+from django.contrib.auth import authenticate,login
+from django.urls import reverse 
+import ticketSales
 # Create your views here.
 
 def loginView(request):
-  return HttpResponse('لاگین')
+  # POST
+  if request.method == 'POST':
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    user = authenticate(request,username=username,password=password)
+
+    if user is not None:
+      login(request,login)
+      return HttpResponseRedirect(reverse(ticketSales.views.timeView))
+    else:
+      context={
+        "username":username,
+        "errorMessage":"کاربری با این مشخصات یافت نشد"
+      }
+      return render(request,"accounts/login.html",context)
+    # GET
+  else:
+    return render(request,'accounts/login.html',{})

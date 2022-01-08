@@ -1,0 +1,11 @@
+- install python 3 (also install pip)
+- install virtual env by cmd : pip install virtualenv
+- install env folder by virtual in cmd(as admin) : virtualenv env
+- active environment in cmd : .\env\scripts\activate.bat 
+- if download project from github or have requirement.txt install package from requirement.txt in cmd : pip install -r requirement.txt (be sure you are in env )
+- in vscode select python interpreter form env python : menu > view > commmand pallets > python:select interpreter (when select can see (env) before path in cmd )
+- if django installed ↓
+- in concert (project) folder run python manage.py runserver
+- if django not installed ↓
+- in cmd folder (env exist in root) type in cmd(env) : pip install django (after install can see django folder in env\Lib\site-packages)
+- create django projcet by django-admin > run in cmd(env) : env\scripts\django-admin startproject concert (concert is project name)
