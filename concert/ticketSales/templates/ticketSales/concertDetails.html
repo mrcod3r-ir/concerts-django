@@ -1,0 +1,20 @@
+{% extends "ticketSales/layout.html" %}
+
+{% block titlepage %}
+  جزئیات {{concertdetails.Name}}
+{% endblock %} 
+
+{% block mainContent %}
+
+  <div class="col-md-10 mt-5">
+    <h3>نام کنسرت : {{concertdetails.Name}}</h3>
+    <h3>نام خواننده : {{concertdetails.SingerName}}</h3>
+    <h3>مدت زمان  : {{concertdetails.length}}</h3>
+  </div>
+  <div class="col-md-2 mt-5">
+    <div class="imageBox">
+      <img src="{{concertdetails.Poster.url}}" alt="{{concertdetails.Name}}">
+    </div>
+  </div>
+
+{% endblock %}
