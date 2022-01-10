@@ -1,6 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from ticketSales.models import concertModel,locationModel,timeModel
+from django.urls import reverse
+import accounts 
+
 
 # Create your views here.
 def concertListView(request):
@@ -39,4 +42,4 @@ def timeView(request):
 
     return render(request,"ticketSales/timeList.html",context)
   else:
-    return HttpResponse("اجازه ورود ندارید")
+    return HttpResponseRedirect(reverse(accounts.views.loginView))
