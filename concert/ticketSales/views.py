@@ -3,6 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from ticketSales.models import concertModel,locationModel,timeModel
 from django.urls import reverse
 import accounts 
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -15,6 +16,7 @@ def concertListView(request):
 
   return render(request,"ticketSales/concertList.html",context)
 
+@login_required
 def locationListView(request):
   locations = locationModel.objects.all()
   context = {
@@ -33,13 +35,14 @@ def concertDetailsView(request,concert_id):
 
   return render(request,"ticketSales/concertDetails.html",context)
 
+@login_required
 def timeView(request):
-  if request.user.is_authenticated and request.user.is_active:
+  # if request.user.is_authenticated and request.user.is_active:
     times = timeModel.objects.all()
     context = {
       "timeList":times,
     }
 
     return render(request,"ticketSales/timeList.html",context)
-  else:
-    return HttpResponseRedirect(reverse(accounts.views.loginView))
+  # else:
+    # return HttpResponseRedirect(reverse(accounts.views.loginView))

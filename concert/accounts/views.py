@@ -1,8 +1,10 @@
+import re
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse 
 from ticketSales import views
+
 # Create your views here.
 
 def loginView(request):
@@ -13,7 +15,9 @@ def loginView(request):
     user = authenticate(request,username=username,password=password)
     if user is not None:
       login(request,user)
-      return HttpResponseRedirect(reverse(views.timeView))
+      if request.GET.get('next'):
+        return HttpResponseRedirect(request.GET.get('next'))
+      return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
     else:
       context={
         "username":username,
@@ -23,3 +27,7 @@ def loginView(request):
     # GET
   else:
     return render(request,'accounts/login.html',{})
+
+def logoutView(request):
+  logout(request)
+  return HttpResponseRedirect(reverse(views.concertListView))
