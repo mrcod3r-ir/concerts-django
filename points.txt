@@ -2,7 +2,7 @@
 - install virtual env by cmd : pip install virtualenv
 - install env folder by virtual in cmd(as admin) : virtualenv env
 - active environment in cmd : .\env\scripts\activate.bat 
-- if download project from github or have requirement.txt install package from requirement.txt in cmd : pip install -r requirement.txt (be sure you are in env )
+- if download project from github or have requirement.txt install package from requirement.txt in cmd : pip install -r requirement.txt (be sure you are in env mode of cmd)
 - in vscode select python interpreter form env python : menu > view > commmand pallets > python:select interpreter (when select can see (env) before path in cmd )
 - if django installed ↓
 - in concert (project) folder run python manage.py runserver
