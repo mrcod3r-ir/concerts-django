@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.enums import Choices
 from jalali_date import datetime2jalali,date2jalali
+from accounts.models import ProfileModel
 
 # Create your models here.
 
@@ -52,30 +53,12 @@ class timeModel(models.Model):
     return "Time: {} ConcertName: {} Location: {}".format(self.StartDateTime,self.concertModel.Name,self.locationModel.Name)
   def get_jalali_date(self):
     return datetime2jalali(self.StartDateTime)
-class ProfileModel(models.Model):
-  class Meta:
-    verbose_name='کاربر'
-    verbose_name_plural='کاربر'
-
-  Name= models.CharField(max_length=100,verbose_name='نام')
-  Family= models.CharField(max_length=100,verbose_name='فامیلی')
-  Profile=models.ImageField(upload_to="ProfileImages/",verbose_name='تصویر')
-
-  Man = 1
-  Woman = 2
-  status_choices = (("Man","مرد"),("Woman","زن"))
-
-  Gender= models.IntegerField(choices= status_choices,verbose_name='جنسیت')
-
-  def __str__(self):
-    return "FullName: {} {}".format(Name,Family)
-
 
 class ticketModel(models.Model):
   class Meta:
     verbose_name="بلیط"
     verbose_name_plural="بلیط"
-  ProfileModel= models.ForeignKey("ProfileModel",on_delete=models.PROTECT,verbose_name='کاربر')
+  ProfileModel= models.ForeignKey(ProfileModel,on_delete=models.PROTECT,verbose_name='کاربر')
   timeModel= models.ForeignKey("timeModel",on_delete=models.PROTECT,verbose_name='تاریخ')
   ticketImage= models.ImageField(upload_to="TicketImages/",verbose_name='تصویر')
   Name = models.CharField(max_length=100,verbose_name='نام')
