@@ -2,6 +2,7 @@ import re
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse 
 from ticketSales import views
 
@@ -31,3 +32,13 @@ def loginView(request):
 def logoutView(request):
   logout(request)
   return HttpResponseRedirect(reverse(views.concertListView))
+
+@login_required
+def profileView(request):
+  profile = request.user.profile
+
+  context = {
+    "profile":profile
+  }
+
+  return render(request,"accounts/profile.html",context)
