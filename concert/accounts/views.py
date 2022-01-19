@@ -1,4 +1,3 @@
-import re
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate,login,logout
@@ -36,7 +35,6 @@ def logoutView(request):
 @login_required
 def profileView(request):
   profile = request.user.profile
-
   context = {
     "profile":profile
   }
