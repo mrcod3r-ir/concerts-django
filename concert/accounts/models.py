@@ -10,7 +10,7 @@ class ProfileModel(models.Model):
   user = models.OneToOneField(User,on_delete=models.CASCADE,verbose_name="کاربری",related_name='profile')
   # Name= models.CharField(max_length=100,verbose_name='نام')
   # Family= models.CharField(max_length=100,verbose_name='فامیلی')
-  Profile=models.ImageField(upload_to="ProfileImages/",verbose_name='تصویر')
+  ProfileImage=models.ImageField(upload_to="ProfileImages/",verbose_name='تصویر')
 
   Man = 1
   Woman = 2

@@ -35,6 +35,10 @@ def logoutView(request):
 
 @login_required
 def profileView(request):
+  print('================================')
+  print(request.user.profile.user)
+  print(dir(request.user.profile.user))
+  print('================================')
   profile = request.user.profile
   context = {
     "profile":profile
