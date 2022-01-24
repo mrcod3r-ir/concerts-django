@@ -2,6 +2,10 @@
 {% block titlepage %} لیست کنسرت ها {% endblock %} 
 {% block mainContent %} 
 	{% if concertlist %} 
+		<form action="" method="GET">
+			{{searchForm}}
+			<button class="btn btn-success" type="submit">جستجو</button>
+		</form>
 		{% for concert in concertlist %}
 			<div class="col-md-2">
 				<a href="/ticketSales/concert/{{concert.id}}">
