@@ -4,7 +4,7 @@ from ticketSales.models import concertModel,locationModel,timeModel
 from django.urls import reverse
 import accounts 
 from django.contrib.auth.decorators import login_required
-from ticketSales.forms import SearchForm
+from ticketSales.forms import SearchForm,ConcertForm
 
 
 # Create your views here.
@@ -54,3 +54,12 @@ def timeView(request):
     return render(request,"ticketSales/timeList.html",context)
   # else:
     # return HttpResponseRedirect(reverse(accounts.views.loginView))
+    
+def concertEditView(request,concert_id):
+  concert = concertModel.objects.get(pk=concert_id)
+  concertForm = ConcertForm()
+  context = {
+    "concertForm":concertForm,
+  }
+
+  return render(request,"ticketSales/concertEdit.html",context)

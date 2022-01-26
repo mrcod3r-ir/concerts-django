@@ -3,14 +3,17 @@
   پروفایل  
 {% endblock %} 
 {% block mainContent %} 
-  <div class="row">
+  <div class="row mt-3">
     <div class="col-md-8">
-      <p>نام و نام خانوادگی :‌ {{profile.user.get_full_name}}</p>
-      <p>جنسیت : {{profile.get_Gender_display}}</p>
-      <p>مقدار اعتبار : {{profile.Credit}}</p>
+      <p class="border"> <span class="title">نام و نام خانوادگی :</span> {{profile.user.get_full_name}}</p>
+      <p class="border"><span class="title">جنسیت : </span>{{profile.get_Gender_display}}</p>
+      <p class="border"><span class="title">مقدار اعتبار : </span>{{profile.Credit}}</p>
+      <ul class="btnul">
+        <li><a class="btn btn-primary" href="/accounts/Edit">ویرایش پروفایل</a></li>
+      </ul>
     </div>
     <div class="col-md-4">
-      <img src="{{profile.ProfileImage.url}}" >
+      <img class="img-thumbnail" src="{{profile.ProfileImage.url}}" >
     </div>
   </div>
 {% endblock %}
