@@ -2,6 +2,7 @@
 {% block titlepage %} ویرایش کنسرت {% endblock %} 
 {% block mainContent %} 
   <form action="" method="POST">
+    {% csrf_token %}
     {{concertForm}}
     <button type="submit" class="btn btn-success">ذخیره</button>
   </form>

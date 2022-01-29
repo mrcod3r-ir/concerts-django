@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
+import ticketSales
 from ticketSales.models import concertModel,locationModel,timeModel
 from django.urls import reverse
-import accounts 
 from django.contrib.auth.decorators import login_required
 from ticketSales.forms import SearchForm,ConcertForm
 
@@ -57,7 +57,14 @@ def timeView(request):
     
 def concertEditView(request,concert_id):
   concert = concertModel.objects.get(pk=concert_id)
-  concertForm = ConcertForm()
+  if request.method == "POST":
+    concertForm = ConcertForm(request.POST,instance=concert)
+    if concertForm.is_valid:
+      concertForm.save()
+      return HttpResponseRedirect(reverse(ticketSales.views.concertListView))
+  else:
+    concertForm = ConcertForm(instance=concert)
+  
   context = {
     "concertForm":concertForm,
   }
