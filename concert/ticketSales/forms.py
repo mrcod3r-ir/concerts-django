@@ -6,5 +6,5 @@ class SearchForm(forms.Form):
 class ConcertForm(forms.ModelForm):
   class Meta:
     model = concertModel
-    fields = ['Name','SingerName','length']
+    fields = ['Name','SingerName','length','Poster']
     # exclude=["Poster"]
