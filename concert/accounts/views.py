@@ -2,9 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse 
+from django.urls import reverse
+from accounts.models import ProfileModel 
 from ticketSales import views
 from django.conf import settings
+from django.contrib.auth.models import User
+from accounts.forms import ProfileRegisterForm
 
 # Create your views here.
 
@@ -35,13 +38,33 @@ def logoutView(request):
 
 @login_required
 def profileView(request):
-  print('================================')
-  print(request.user.profile.user)
-  print(dir(request.user.profile.user))
-  print('================================')
   profile = request.user.profile
   context = {
     "profile":profile
   }
 
   return render(request,"accounts/profile.html",context)
+
+def profileRegisterView(request):
+  
+  if request.method == "POST":
+    profileRegisterForm = ProfileRegisterForm(request.POST,request.FILES)
+    if profileRegisterForm.is_valid():
+      user = User.objects.create_user(username=profileRegisterForm.cleaned_data["username"],email=profileRegisterForm.cleaned_data["email"],password=profileRegisterForm.cleaned_data["password"],first_name=profileRegisterForm.cleaned_data["first_name"],last_name=profileRegisterForm.cleaned_data["last_name"])
+      
+      user.save()
+      
+      profileModel = ProfileModel(user=user,ProfileImage=profileRegisterForm.cleaned_data['ProfileImage'],Gender=profileRegisterForm.cleaned_data['Gender'],Credit=profileRegisterForm.cleaned_data['Credit'])
+      
+      profileModel.save()
+      
+      return HttpResponseRedirect(reverse(views.concertListView))
+    
+    
+  else:
+    profileRegisterForm = ProfileRegisterForm()
+    
+  context = {
+    "formsData":profileRegisterForm
+  }  
+  return render(request,"accounts/profileRegister.html",context)
